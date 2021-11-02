@@ -20,6 +20,7 @@ ENDCLASS.
 CLASS zcl_security_cc_problem_2 IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
     DATA(sql) = `CARRIER_ID = '` && input && `'`.
+    sql = cl_abap_dyn_prg=>escape_quotes( sql ).
     SELECT * FROM /dmo/flight WHERE (sql) INTO table @DATA(results).
     out->write( results ).
   ENDMETHOD.
